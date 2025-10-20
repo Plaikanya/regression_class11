@@ -1,29 +1,31 @@
 import streamlit as st
 import pandas as pd
 import pickle
+import requests
+from io import BytesIO
 
-# Step 1: Load trained model
-model_path = r"/content/drive/MyDrive/!698-1-2025/class11/model-reg-67130701707.pkl"
-with open(model_path, "rb") as file:
-    model = pickle.load(file)
-
-# Title
 st.title("📊 Sales Prediction App")
 st.write("Predict sales based on advertising spend on YouTube, TikTok, and Instagram.")
 
-# Step 2: Input fields
+# URL ของไฟล์ .pkl บน GitHub (ใช้ raw link)
+model_url = "https://github.com/Plaikanya/regression_class11/blob/main/model-reg-67130701707.pkl"
+
+# โหลดโมเดลจาก GitHub
+response = requests.get(model_url)
+model = pickle.load(BytesIO(response.content))
+
+# Input fields
 youtube = st.number_input("YouTube Advertising Budget", min_value=0.0, value=50.0)
 tiktok = st.number_input("TikTok Advertising Budget", min_value=0.0, value=50.0)
 instagram = st.number_input("Instagram Advertising Budget", min_value=0.0, value=50.0)
 
-# Create DataFrame
 new_data = pd.DataFrame({
     "youtube": [youtube],
     "tiktok": [tiktok],
     "instagram": [instagram]
 })
 
-# Step 3: Predict
+# Predict
 if st.button("Predict Sales"):
     predicted_sales = model.predict(new_data)
     st.success(f"💰 Estimated Sales: {predicted_sales[0]:.2f}")
