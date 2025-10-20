@@ -8,7 +8,7 @@ st.title("📊 Sales Prediction App")
 st.write("Predict sales based on advertising spend on YouTube, TikTok, and Instagram.")
 
 # URL ของไฟล์ .pkl บน GitHub (ใช้ raw link)
-model_url = "https://github.com/Plaikanya/regression_class11/blob/main/model-reg-67130701707.pkl"
+model_url = "https://raw.githubusercontent.com/Plaikanya/regression_class11/blob/main/model-reg-67130701707.pkl"
 
 # โหลดโมเดลจาก GitHub
 response = requests.get(model_url)
