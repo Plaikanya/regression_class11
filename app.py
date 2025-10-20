@@ -3,7 +3,7 @@ import pandas as pd
 import pickle
 
 # Step 1: Load trained model
-with open("/content/drive/MyDrive/model-reg-67130701707.pkl", "rb") as file:
+with open("/content/drive/MyDrive/!698-1-2025/class11/model-reg-67130701707.pkl", "rb") as file:
     model = pickle.load(file)
 
 # Title
